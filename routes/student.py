@@ -2,10 +2,10 @@
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from backend.database import get_db
+from database import get_db
 from typing import List
-from backend.models import Student
-from backend.schemas import (
+from models import Student
+from schemas import (
     StudentCreate,
     StudentLogin,
     ChangePassword,
@@ -15,10 +15,10 @@ from backend.schemas import (
     EnrollResponse,
     CourseDetails,
 )
-from backend.util.auth_utils import get_current_student
-from backend.services.student.auth_service import AuthService
-from backend.services.student.course_service import CourseService
-from backend.services.student.attendance_service import AttendanceService
+from util.auth_utils import get_current_student
+from services.student.auth_service import AuthService
+from services.student.course_service import CourseService
+from services.student.attendance_service import AttendanceService
 
 
 router = APIRouter()

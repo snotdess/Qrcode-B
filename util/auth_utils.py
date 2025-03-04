@@ -5,9 +5,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from datetime import datetime, timedelta
 from sqlalchemy.future import select
 from typing import Optional
-from backend.database import get_db
-from backend.config import settings
-from backend.models import Lecturer, Student
+from database import get_db
+from config import settings
+from models import Lecturer, Student
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer
 

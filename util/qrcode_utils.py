@@ -1,13 +1,13 @@
-from backend.config import settings
+from config import settings
 from datetime import datetime, timedelta
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from fastapi import HTTPException
 from geopy.distance import geodesic
 from datetime import datetime, timedelta
-from backend.models import Student, Course, QRCode, StudentCourses
-from backend.utils import filter_records
-from backend.errors.qr_code_errors import HourlyQRCodeError
+from models import Student, Course, QRCode, StudentCourses
+from utils import filter_records
+from errors.qr_code_errors import HourlyQRCodeError
 
 
 # # --------------------

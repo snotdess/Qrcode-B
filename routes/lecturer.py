@@ -2,9 +2,9 @@
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
-from backend.database import get_db
-from backend.models import Lecturer
-from backend.schemas import (
+from database import get_db
+from models import Lecturer
+from schemas import (
     LecturerCreate,
     LecturerLogin,
     LecturerToken,
@@ -17,11 +17,11 @@ from backend.schemas import (
     LecturerCoursesListResponse,
     AttendanceResponse,
 )
-from backend.services.lecturer.auth_service import AuthService
-from backend.services.lecturer.qrcode_service import QRCodeService
-from backend.services.lecturer.lecturer_course_service import LecturerCourseService
-from backend.util.auth_utils import get_current_lecturer
-from backend.services.lecturer_service import (
+from services.lecturer.auth_service import AuthService
+from services.lecturer.qrcode_service import QRCodeService
+from services.lecturer.lecturer_course_service import LecturerCourseService
+from util.auth_utils import get_current_lecturer
+from services.lecturer_service import (
     get_attendance_service,
 )
 from typing import List

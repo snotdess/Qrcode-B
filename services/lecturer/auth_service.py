@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from backend.models import Lecturer
-from backend.util.auth_utils import (
+from models import Lecturer
+from util.auth_utils import (
     get_password_hash,
     create_access_token,
     verify_password,

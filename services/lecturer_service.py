@@ -1,13 +1,13 @@
 from sqlmodel import select, func
 from sqlmodel.ext.asyncio.session import AsyncSession
-from backend.models import (
+from models import (
     Course,
     LecturerCourses,
     StudentCourses,
     AttendanceRecords,
     Student,
 )
-from backend.errors.course_errors import UnauthorizedLecturerCourseError
+from errors.course_errors import UnauthorizedLecturerCourseError
 from typing import Dict
 
 

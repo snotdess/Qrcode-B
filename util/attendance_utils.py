@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
 from typing import Dict
 from datetime import timedelta, datetime
-from backend.models import QRCode, AttendanceRecords, Course, LecturerCourses, Lecturer, StudentCourses
+from models import QRCode, AttendanceRecords, Course, LecturerCourses, Lecturer, StudentCourses
 
 
 # # --------------------

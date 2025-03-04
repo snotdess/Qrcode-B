@@ -3,10 +3,10 @@ from typing import List
 from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.sql import func
-from backend.models import Lecturer, Course, LecturerCourses, StudentCourses
-from backend.utils import filter_records
-from backend.util.lecturer_utils import validate_lecturer, count_lecturer_courses
-from backend.errors.course_errors import (
+from models import Lecturer, Course, LecturerCourses, StudentCourses
+from utils import filter_records
+from util.lecturer_utils import validate_lecturer, count_lecturer_courses
+from errors.course_errors import (
     LecturerCourseAlreadyAssociatedError,
     CourseNotFoundError,
 )

@@ -1,15 +1,15 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
-from backend.models import (
+from models import (
     Student,
     Course,
     StudentCourses,
     LecturerCourses,
     Lecturer,
 )
-from backend.utils import filter_records
-from backend.errors.auth_errors import StudentNotFoundError, LecturerNotFoundError
-from backend.errors.course_errors import (
+from utils import filter_records
+from errors.auth_errors import StudentNotFoundError, LecturerNotFoundError
+from errors.course_errors import (
     CourseNotFoundError,
     UnauthorizedLecturerCourseError,
     StudentEnrolledError

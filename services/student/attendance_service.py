@@ -1,10 +1,10 @@
 from datetime import datetime
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
-from backend.models import Student, AttendanceRecords
-from backend.schemas import AttendanceCreate, StudentAttendanceRecord
+from models import Student, AttendanceRecords
+from schemas import AttendanceCreate, StudentAttendanceRecord
 from datetime import datetime
-from backend.util.qrcode_utils import (
+from util.qrcode_utils import (
     fetch_student,
     fetch_course,
     validate_enrollment,
@@ -12,17 +12,17 @@ from backend.util.qrcode_utils import (
     is_within_timeframe,
     validate_geolocation,
 )
-from backend.util.attendance_utils import (
+from util.attendance_utils import (
     check_existing_attendance,
     mark_absent_students,
 )
-from backend.util.attendance_utils import (
+from util.attendance_utils import (
     fetch_total_sessions_per_course,
     fetch_student_attendance_records,
     calculate_attendance_percentage,
 )
-from backend.errors.attendance_errors import AttendanceAuthError, MarkedAttendanceError
-from backend.errors.qr_code_errors import ExpiredQRCodeError
+from errors.attendance_errors import AttendanceAuthError, MarkedAttendanceError
+from errors.qr_code_errors import ExpiredQRCodeError
 
 
 class AttendanceService:

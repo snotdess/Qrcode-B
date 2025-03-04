@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-# from database import init_db, async_session, engine
-from backend.database import init_db, engine
-from backend.routes import student, lecturer
+from database import init_db, engine
+from routes import student, lecturer
 from contextlib import asynccontextmanager
 
 
