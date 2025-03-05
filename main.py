@@ -33,7 +33,7 @@ app = FastAPI(lifespan=lifespan)
 # Add CORS middleware to allow requests from specific origins (for development use)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://wasq-kappa.vercel.app"],  # Allows all origins, change to specific URLs for production
+    allow_origins=["http://localhost:5173"],  # Allows all origins, change to specific URLs for production
     allow_credentials=True,
     allow_methods=["*"],  # Allows all HTTP methods (GET, POST, PUT, DELETE, OPTIONS, etc.)
     allow_headers=["*"],  # Allows all headers
