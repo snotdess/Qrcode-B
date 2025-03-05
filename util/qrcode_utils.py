@@ -63,7 +63,7 @@ def validate_geolocation(
     student_long: float,
     qr_lat: float,
     qr_long: float,
-    max_distance: float = 50,
+    max_distance: float = 15.93,
 ):
     student_location = (round(student_lat, 2), round(student_long, 2))
     lecturer_location = (round(qr_lat, 2), round(qr_long, 2))

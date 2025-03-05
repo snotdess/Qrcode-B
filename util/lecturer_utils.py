@@ -24,7 +24,7 @@ async def get_course_by_identifier(
     filter_kwargs = {identifier_type: identifier}
     course = await filter_records(Course, db, **filter_kwargs)
     if not course:
-        raise CourseNotFoundError(identifier_type, identifier)
+        raise CourseNotFoundError()
     return course
 
 
