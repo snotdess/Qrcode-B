@@ -51,12 +51,11 @@ async def get_attendance_service(course_code: str, current_lecturer, db: AsyncSe
             "attendance": [],
         }
 
-    # Get the last 5 attendance dates
+    # Get the attendance dates
     date_query = (
         select(AttendanceRecords.date)
         .where(AttendanceRecords.course_code == course.course_code)
         .order_by(AttendanceRecords.date.desc())
-        .limit(5)
     )
     date_result = await db.execute(date_query)
     recent_dates = [record[0].strftime("%Y-%m-%d") for record in date_result.fetchall()]

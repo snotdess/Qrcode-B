@@ -1,4 +1,4 @@
-.env
+
 
 .qodo
 
@@ -6,3 +6,5 @@ __pycache__
 
 
 qrvenv/
+
+.env
