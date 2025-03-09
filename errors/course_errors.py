@@ -25,4 +25,4 @@ class LecturerNotLoggedInError(CustomCourseError):
 
 class StudentEnrolledError(CustomCourseError):
     def __init__(self):
-        super().__init__(403, "Student is not enrolled in this course.")
+        super().__init__(403, "Student is enrolled in this course.")
