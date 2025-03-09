@@ -30,11 +30,11 @@ class CourseService:
         )
 
         if not student:
-            StudentNotFoundError()
+            raise StudentNotFoundError()
         if not course:
-            CourseNotFoundError()
+            raise CourseNotFoundError()
         if not lecturer:
-            LecturerNotFoundError()
+            raise LecturerNotFoundError()
 
         lecturer_course = await filter_records(
             LecturerCourses,
@@ -44,7 +44,7 @@ class CourseService:
         )
 
         if not lecturer_course:
-            UnauthorizedLecturerCourseError()
+            raise UnauthorizedLecturerCourseError()
 
         if await filter_records(
             StudentCourses,
@@ -52,7 +52,7 @@ class CourseService:
             matric_number=enrollment_data.matric_number,
             course_code=enrollment_data.course_code,
         ):
-            StudentEnrolledError()
+            raise StudentEnrolledError()
 
         new_enrollment = StudentCourses(
             matric_number=enrollment_data.matric_number,
@@ -87,7 +87,7 @@ class CourseService:
         courses = result.fetchall()
 
         if not courses:
-            CourseNotFoundError()
+            raise CourseNotFoundError()
 
         return [
             {

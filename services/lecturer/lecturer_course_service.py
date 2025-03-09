@@ -126,7 +126,7 @@ class LecturerCourseService:
             db, current_lecturer.lecturer_id
         )
         if not courses:
-            CourseNotFoundError()
+            raise CourseNotFoundError()
 
         # Build the result list with student counts for each course.
         course_students = []

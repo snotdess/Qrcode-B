@@ -50,7 +50,7 @@ class AttendanceService:
             await mark_absent_students(
                 db, attendance_data.course_code, qr_code.generation_time
             )
-            ExpiredQRCodeError()
+            raise ExpiredQRCodeError()
 
         existing_attendance = await check_existing_attendance(
             db,
@@ -59,7 +59,7 @@ class AttendanceService:
             qr_code.generation_time,
         )
         if existing_attendance:
-            MarkedAttendanceError()
+            raise MarkedAttendanceError()
 
         validate_geolocation(
             attendance_data.latitude,

@@ -34,7 +34,7 @@ async def get_attendance_service(course_code: str, current_lecturer, db: AsyncSe
     lecturer_course = lecturer_course_result.scalars().first()
 
     if not lecturer_course:
-        UnauthorizedLecturerCourseError()
+        raise UnauthorizedLecturerCourseError()
 
     # Find students enrolled in the course
     student_query = (
