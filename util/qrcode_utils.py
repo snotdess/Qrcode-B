@@ -56,14 +56,14 @@ async def check_recent_qr_code(
 
 
 def is_within_timeframe(qr_time: datetime) -> bool:
-    return datetime.utcnow() - qr_time <= timedelta(hours=1)
+    return datetime.utcnow() - qr_time <= timedelta(minutes=10)
 
 def validate_geolocation(
     student_lat: float,
     student_long: float,
     qr_lat: float,
     qr_long: float,
-    max_distance: float = 15.93,
+    max_distance: float = 12,
 ):
     student_location = (round(student_lat, 2), round(student_long, 2))
     lecturer_location = (round(qr_lat, 2), round(qr_long, 2))
