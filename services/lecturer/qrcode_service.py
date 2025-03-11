@@ -31,7 +31,7 @@ class QRCodeService:
         course = await get_course_by_identifier(db, qr_code_data.course_code, "course_code")
         await validate_lecturer_course(db, course.course_code, current_lecturer.lecturer_id)
 
-        # Check for an existing QR code generated within the last hour.
+        # Ensure no duplicate QR code exists for this course in the current hour
         await check_recent_qr_code(db, course.course_code, current_lecturer.lecturer_id)
 
         generation_time = get_current_utc_time()
@@ -56,6 +56,7 @@ class QRCodeService:
         await db.commit()
         await db.refresh(new_qr_code)
         return new_qr_code
+
 
     @staticmethod
     async def get_latest_qr_codes(lecturer_id: int, db: AsyncSession):
@@ -136,6 +137,7 @@ class QRCodeService:
             )
 
         await db.delete(qr_code)
+        await db.flush()
         await db.commit()
 
         return {"detail": f"QR Code for course '{course_name}' deleted successfully."}

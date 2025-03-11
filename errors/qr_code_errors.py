@@ -9,7 +9,7 @@ class CustomQRCodeError(HTTPException):
 class HourlyQRCodeError(CustomQRCodeError):
     def __init__(self):
         super().__init__(
-            400, "QR Code already generated for this course within the last hour."
+            400, "QR Code already generated for this course within the past minutes."
         )
 
 class QRCodeNotFoundError(CustomQRCodeError):

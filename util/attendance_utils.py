@@ -68,7 +68,7 @@ def calculate_attendance_percentage(
 async def check_existing_attendance(
     db: AsyncSession, matric_number: str, course_code: str, qr_generation_time: datetime
 ):
-    end_time = qr_generation_time + timedelta(hours=1)
+    end_time = qr_generation_time + timedelta(minutes=10)
     result = await db.execute(
         select(AttendanceRecords).where(
             (AttendanceRecords.matric_number == matric_number)
