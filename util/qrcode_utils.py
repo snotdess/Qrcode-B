@@ -39,8 +39,6 @@ def get_start_of_current_hour():
     return now.replace(minute=0, second=0, microsecond=0)
 
 
-
-
 async def check_recent_qr_code(db: AsyncSession, course_code, lecturer_id):
     """
     Ensure that a QR code for the same course does not exist within the current hour.
@@ -67,6 +65,7 @@ async def check_recent_qr_code(db: AsyncSession, course_code, lecturer_id):
 def is_within_timeframe(qr_time: datetime) -> bool:
     return datetime.utcnow() - qr_time <= timedelta(minutes=10)
 
+
 def validate_geolocation(
     student_lat: float,
     student_long: float,
@@ -74,30 +73,12 @@ def validate_geolocation(
     qr_long: float,
     max_distance: float = 15,
 ):
-    student_location = (round(student_lat, 2), round(student_long, 2))
-    lecturer_location = (round(qr_lat, 2), round(qr_long, 2))
+    student_location = (student_lat, student_long)
+    lecturer_location = (qr_lat, qr_long)
     distance = geodesic(student_location, lecturer_location).meters
     if distance > max_distance:
         raise LocationRangeError()
-
-
-# def validate_geolocation(
-#     student_lat: float,
-#     student_long: float,
-#     qr_lat: float,
-#     qr_long: float,
-#     max_distance: float = 15,
-# ):
-#     student_location = (round(student_lat, 2), round(student_long, 2))
-#     lecturer_location = (round(qr_lat, 2), round(qr_long, 2))
-
-#     distance = haversine(*student_location, *lecturer_location)
-
-#     if distance > max_distance:
-#         raise LocationRangeError()
-
-#     return True
-
+    return True
 
 
 async def fetch_student(db: AsyncSession, matric_number: str):
@@ -109,12 +90,14 @@ async def fetch_student(db: AsyncSession, matric_number: str):
         raise StudentNotFoundError()
     return student
 
+
 async def fetch_course(db: AsyncSession, course_code: str):
     result = await db.execute(select(Course).where(Course.course_code == course_code))
     course = result.scalars().first()
     if not course:
         raise CourseNotFoundError()
     return course
+
 
 async def validate_enrollment(db: AsyncSession, matric_number: str, course_code: str):
     result = await db.execute(
@@ -126,6 +109,7 @@ async def validate_enrollment(db: AsyncSession, matric_number: str, course_code:
     enrollment = result.scalars().first()
     if not enrollment:
         raise StudentEnrolledError()
+
 
 async def fetch_latest_qr_code(db: AsyncSession, course_code: str, lecturer_id: str):
     result = await db.execute(
