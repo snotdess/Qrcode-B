@@ -84,10 +84,7 @@ class CourseService:
             .where(StudentCourses.matric_number == current_student.matric_number)
         )
         result = await db.execute(query)
-        courses = result.fetchall()
-
-        if not courses:
-            raise CourseNotFoundError()
+        courses = result.all() 
 
         return [
             {
@@ -98,7 +95,8 @@ class CourseService:
                 "lecturer_name": c.lecturer_name,
             }
             for c in courses
-        ]
+        ] if courses else []
+
 
     @staticmethod
     async def get_student_course_stats(db: AsyncSession, current_student: Student):

@@ -8,6 +8,10 @@ class EmailAlreadyExistError(CustomAuthError):
     def __init__(self):
         super().__init__(400, "Email already registered.")
 
+class EmailDoesNotExistError(CustomAuthError):
+    def __init__(self):
+        super().__init__(404, "Email already registered.")
+
 class MatNoAlreadyExistError(CustomAuthError):
     def __init__(self):
         super().__init__(400, "Student Matric Number already registered.")
@@ -19,8 +23,6 @@ class LecturerNotFoundError(CustomAuthError):
 class StudentNotFoundError(CustomAuthError):
     def __init__(self):
         super().__init__(404, "Student not found.")
-
-
 
 class PasswordError(CustomAuthError):
     def __init__(self):

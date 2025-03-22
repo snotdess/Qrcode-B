@@ -6,6 +6,7 @@ from util.auth_utils import (
     verify_password,
     filter_records,
 )
+from errors.auth_errors import EmailAlreadyExistError, LecturerNotFoundError, PasswordError, EmailDoesNotExistError
 from fastapi import HTTPException
 
 
@@ -17,7 +18,7 @@ class AuthService:
         )
 
         if existing_lecturer:
-            raise HTTPException(status_code=400, detail="Email already registered.")
+            raise EmailAlreadyExistError()
 
         hashed_password = get_password_hash(lecturer_data.lecturer_password)
         new_lecturer = Lecturer(
@@ -42,12 +43,12 @@ class AuthService:
         )
 
         if not db_lecturer:
-            raise HTTPException(status_code=404, detail="Lecturer not found.")
+            raise LecturerNotFoundError()
 
         if not verify_password(
             lecturer_data.lecturer_password, db_lecturer.lecturer_password
         ):
-            raise HTTPException(status_code=401, detail="Incorrect password.")
+            raise PasswordError()
 
         token = create_access_token(data={"sub": db_lecturer.lecturer_email})
 
@@ -64,9 +65,7 @@ class AuthService:
         lecturer = await filter_records(Lecturer, db, lecturer_email=data.email)
 
         if not lecturer:
-            raise HTTPException(
-                status_code=404, detail="Lecturer with this email does not exist"
-            )
+            raise EmailDoesNotExistError()
 
         lecturer.lecturer_password = get_password_hash(data.new_password)
         db.add(lecturer)
