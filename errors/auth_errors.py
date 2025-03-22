@@ -20,9 +20,7 @@ class StudentNotFoundError(CustomAuthError):
     def __init__(self):
         super().__init__(404, "Student not found.")
 
-class StudentEnrolledError(CustomAuthError):
-    def __init__(self):
-        super().__init__(400, "Student with this ma.")
+
 
 class PasswordError(CustomAuthError):
     def __init__(self):

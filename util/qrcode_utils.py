@@ -5,10 +5,9 @@ from sqlalchemy import select
 from geopy.distance import geodesic
 from datetime import datetime, timedelta
 from models import Student, Course, QRCode, StudentCourses
-from utils import filter_records, haversine
 from errors.qr_code_errors import HourlyQRCodeError, QRCodeNotFoundError
-from errors.auth_errors import StudentNotFoundError, StudentEnrolledError
-from errors.course_errors import CourseNotFoundError
+from errors.auth_errors import StudentNotFoundError
+from errors.course_errors import CourseNotFoundError, StudentEnrolledError
 from errors.attendance_errors import LocationRangeError
 
 # # --------------------
